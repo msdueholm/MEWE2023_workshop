@@ -6,8 +6,8 @@ mkdir V13_raw_data
 while read SAMPLES
 do
 NAME=$SAMPLES;
-find /raw_data/sequences/Illumina/MiSeq/ -name $NAME\_*R1* -exec gzip -cd {} \; > V13_raw_data/$NAME\_R1.fq 
-find /raw_data/sequences/Illumina/MiSeq/ -name $NAME\_*R2* -exec gzip -cd {} \; > V13_raw_data/$NAME\_R2.fq 
+find Sequence_data/ -name $NAME\_*R1* -exec gzip -cd {} \; > V13_raw_data/$NAME\_R1.fq 
+find Sequence_data/ -name $NAME\_*R2* -exec gzip -cd {} \; > V13_raw_data/$NAME\_R2.fq 
 usearch11 -fastq_mergepairs V13_raw_data/$NAME\_R1.fq -sample @ -fastqout V13_raw_data/temp.$NAME.fq
 usearch11 -fastx_relabel V13_raw_data/temp.$NAME.fq -prefix $NAME\_ -fastqout V13_raw_data/temp2.$NAME.fq
 cat V13_raw_data/temp2.$NAME.fq >> V13_raw_data/V13_merged.fastq

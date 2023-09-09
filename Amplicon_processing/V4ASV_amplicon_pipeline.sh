@@ -6,7 +6,7 @@ mkdir V4_raw_data
 while read SAMPLES
 do
 NAME=$SAMPLES;
-find /raw_data/sequences/Illumina/MiSeq/ -name $NAME\_*R1* -exec gzip -cd {} \; > V4_raw_data/$NAME.R1.fq 
+find Sequence_data/ -name $NAME\_*R1* -exec gzip -cd {} \; > V4_raw_data/$NAME.R1.fq 
 usearch11 -fastx_relabel V4_raw_data/$NAME.R1.fq -prefix $NAME\_ -fastqout V4_raw_data/temp.$NAME.R1.fq
 cat V4_raw_data/temp.$NAME.R1.fq >> V4_raw_data/V4_forward.fastq
 done < V4_samples.txt
